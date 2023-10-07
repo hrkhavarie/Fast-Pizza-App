@@ -8,7 +8,10 @@ function CartOverview() {
   const totalCartQuantity= useSelector(getTotalCartQuantity)
     
 
-    const totalCartPrice = useSelector(getTotalCartPrice)
+    let totalCartPrice = useSelector(getTotalCartPrice)
+    // if(totalCartPrice <30){
+    //   totalCartPrice +=3;
+    // }
 
   if(!totalCartQuantity) return null
     

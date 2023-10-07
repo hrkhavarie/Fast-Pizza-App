@@ -9,6 +9,7 @@ import {
   formatCurrency,
   formatDate,
 } from '../../utils/helpers';
+import { useSelector } from 'react-redux';
 
 function Order() {
   const order = useLoaderData();
@@ -22,7 +23,10 @@ function Order() {
     orderPrice,
     estimatedDelivery,
     cart,
+    
   } = order;
+
+  const {address , username , phone} = useSelector(state=>state.user)
 
   const deliveryIn = calcMinutesLeft(estimatedDelivery);
 
@@ -62,16 +66,19 @@ function Order() {
 
       <div className="space-y-2 bg-stone-200 px-6 py-5">
         <p className="text-sm font-medium text-stone-600">
-          Price pizza: {formatCurrency(orderPrice)}
+         <b> Price pizza:</b> {formatCurrency(orderPrice)}
         </p>
         {priority && (
           <p className="text-sm font-medium text-stone-600">
-            Price priority: {formatCurrency(priorityPrice)}
+            <b>Price priority:</b> {formatCurrency(priorityPrice)}
           </p>
         )}
-        <p className="font-bold">
-          To pay on delivery: {formatCurrency(orderPrice + priorityPrice)}
+        <p className="font-medium">
+         <b> To pay on delivery:</b> {formatCurrency(orderPrice + priorityPrice)}
         </p>
+        <p><b>Address:</b> {address}</p>
+        <p><b>Name:</b> {username}</p>
+        <p><b>phone:</b> {phone}</p>
       </div>
     </div>
   );

@@ -40,6 +40,7 @@ const cartSlice = createSlice({
 
             if(item.quantity === 0) cartSlice.caseReducers.deleteItem(state, action)
         },
+  
         clearCart(state){
             state.cart = []
         },
@@ -58,10 +59,26 @@ export default cartSlice.reducer ;
 
 // Methods
 
-export const getTotalCartPrice  =((state)=>
+export let getTotalCartPrice  =  (state)=>
     state.cart.cart
-    .reduce((sum , item)=> sum + item.totalPrice, 0)
-    )
+    .reduce((sum , item)=> sum + item.totalPrice, 0 ) ;
+
+    // if(total<30)
+    // return total= total +3
+    // // (Numner(total) <30) ? (total +=3) : total;
+    //  return total
+        
+    
+// export const getTotalCartPrice = (Number(getTotalCartPrice1)<30) ? getTotalCartPrice1 +=3: getTotalCartPrice1; 
+
+    
+  
+
+    // export const getTotlapay = ()=>{
+    //     let sum = getTotalCartPrice();
+    //     Number(sum);
+    //    sum = (sum<30) ? sum= sum+3 : sum;
+    // }
 
 export const getTotalCartQuantity  =((state)=>
     state.cart.cart

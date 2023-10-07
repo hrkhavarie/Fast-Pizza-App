@@ -2,8 +2,9 @@ import LinkButton from '../../ui/LinkButton';
 import Button from '../../ui/Button';
 import CartItem from './CartItem';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearCart, getCart } from './cartSlice';
+import { clearCart, getCart, getTotalCartPrice } from './cartSlice';
 import EmptyCart from './EmptyCart';
+
 
 
 // const fakeCart = [
@@ -36,6 +37,7 @@ function Cart() {
  const dispatch = useDispatch()
 
   const username = useSelector(state=>state.user.username);
+  const totalCartPrice = useSelector(getTotalCartPrice)
 
   const cart = useSelector(getCart);
 
@@ -56,6 +58,10 @@ function Cart() {
           <CartItem item={item} key={item.pizzaId} ></CartItem>
          
 )}
+
+{ totalCartPrice<30? (<p>3 Euro charged for shipping under 30</p>):
+  ''
+}
       </ul>
 
       <div className="mt-6 space-x-2"> 
